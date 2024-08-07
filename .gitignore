@@ -1,3 +1,2 @@
 .idea/
-.forntend/.clj-kondo/
-.forntend/
+.forntend/.*
