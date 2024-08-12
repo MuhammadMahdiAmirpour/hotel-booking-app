@@ -8,14 +8,12 @@ import ir.ac.kntu.hotel_booking_app.response.RoomResponse;
 import ir.ac.kntu.hotel_booking_app.service.BookingService;
 import ir.ac.kntu.hotel_booking_app.service.IRoomService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.rowset.serial.SerialBlob;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Blob;
