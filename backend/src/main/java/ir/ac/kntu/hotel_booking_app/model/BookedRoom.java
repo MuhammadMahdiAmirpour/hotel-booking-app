@@ -25,7 +25,7 @@ public class BookedRoom {
 	private LocalDate checkOutDate;
 
 	@Column(name = "guest_full_name")
-	private String questFullName;
+	private String guestFullName;
 
 	@Column(name = "guest_email")
 	private String guestEmail;
@@ -60,5 +60,4 @@ public class BookedRoom {
 		this.numberOfChildren = numberOfChildren;
 		calculateTotalNumberOfGuests();
 	}
-
 }

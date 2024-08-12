@@ -21,6 +21,7 @@ import java.util.Optional;
 public class RoomService implements IRoomService {
 
 	private final RoomRepository roomRepository;
+
 	@Override
 	public Room addNewRoom(MultipartFile file, String roomType, BigDecimal roomPrice) throws IOException, SQLException {
 		Room room = new Room();
@@ -67,8 +68,7 @@ public class RoomService implements IRoomService {
 
 	@Override
 	public Room updateRoom(Long roomId, String roomType, BigDecimal roomPrice, byte[] photoBytes) {
-		Room room = roomRepository.findById(roomId)
-				.orElseThrow(() -> new ResourceNotFoundException("Room Not Found"));
+		Room room = roomRepository.findById(roomId).orElseThrow(() -> new ResourceNotFoundException("Room Not Found"));
 		if (roomType != null && !roomType.isEmpty()) room.setRoomType(roomType);
 		if (roomPrice != null) room.setRoomPrice(roomPrice);
 		if (photoBytes != null && photoBytes.length > 0) {
