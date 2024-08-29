@@ -49,7 +49,7 @@ const RoomTypeSelector = ({ handleRoomInputChange, newRoom }) => {
 						))}
 					</select>
 					{showNewRoomTypeInput && (
-						<div className="mt-2">
+						<div className="mt-ear">
 							<div className="input-group">
 								<input
 									type="text"

@@ -81,10 +81,12 @@ export async function getRoomById(roomId) {
 	}
 }
 
-/* This function saves a new booking to the databse */
+/* This function saves a new booking to the database */
 export async function bookRoom(roomId, booking) {
 	try {
 		const response = await api.post(`/bookings/room/${roomId}/booking`, booking)
+		console.log(response.data)
+		console.log(response.request)
 		return response.data
 	} catch (error) {
 		if (error.response && error.response.data) {
@@ -131,7 +133,7 @@ export async function cancelBooking(bookingId) {
 	}
 }
 
-/* This function gets all availavle rooms from the database with a given date and a room type */
+/* This function gets all available rooms from the database with a given date and a room type */
 export async function getAvailableRooms(checkInDate, checkOutDate, roomType) {
 	const result = await api.get(
 		`rooms/available-rooms?checkInDate=${checkInDate}
