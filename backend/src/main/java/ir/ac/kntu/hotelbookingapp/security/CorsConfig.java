@@ -1,44 +1,107 @@
 package ir.ac.kntu.hotelbookingapp.security;
 
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import java.util.Arrays;
+//@Configuration
+//public class CorsConfig implements CorsConfigurationSource {
+//
+//    private static final Long MAX_AGE = 3600L;
+//    private static final int CORS_FILTER_ORDER = -102;
+//
+//    @Bean
+//    public FilterRegistrationBean<CorsFilter> corsFilter() {
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        CorsConfiguration config = new CorsConfiguration();
+//
+//        // Specify allowed origins
+//        config.setAllowedOrigins(List.of("http://localhost:80", "http://127.0.0.1:80")); // Use the service name for
+//        // Docker
+//        config.setAllowCredentials(true);
+//        config.setAllowedHeaders(List.of("*"));
+//        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+//        config.setMaxAge(MAX_AGE);
+//
+//        source.registerCorsConfiguration("/**", config);
+//
+//        FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(source));
+//        bean.setOrder(CORS_FILTER_ORDER);
+//        return bean;
+//    }
+//
+//    @Override
+//    public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+//        CorsConfiguration config = new CorsConfiguration();
+//        config.setAllowedOrigins(List.of("http://localhost:80", "http://127.0.0.1:80"));
+//        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+//        config.setAllowedHeaders(List.of("*"));
+//        return config;
+//    }
+//}
+//
+
+//@Configuration
+//public class CorsConfig implements CorsConfigurationSource {
+//
+//	private static final Long MAX_AGE           = 3600L;
+//	private static final int  CORS_FILTER_ORDER = -102;
+//
+//	@Bean
+//	public FilterRegistrationBean<CorsFilter> corsFilter() {
+//		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//		CorsConfiguration               config = new CorsConfiguration();
+//
+//		config.setAllowedOrigins(List.of("http://localhost:80", "http://127.0.0.1:80"));
+//		config.setAllowCredentials(true);
+//		config.setAllowedHeaders(List.of("*"));
+//		config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+//		config.setMaxAge(MAX_AGE);
+//
+//		source.registerCorsConfiguration("/**", config);
+//
+//		FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(source));
+//		bean.setOrder(CORS_FILTER_ORDER);
+//		return bean;
+//	}
+//
+//	@Override
+//	public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+//		CorsConfiguration config = new CorsConfiguration();
+//		config.setAllowedOrigins(List.of("http://localhost:80", "http://127.0.0.1:80"));
+//		config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+//		config.setAllowedHeaders(List.of("*"));
+//		return config;
+//	}
+//}
+//
+
 
 @Configuration
-@EnableWebMvc
 public class CorsConfig {
 
-	private static final Long MAX_AGE           = 3600L;
-	private static final int  CORS_FILTER_ORDER = -102;
-
 	@Bean
-	public FilterRegistrationBean corsFilter() {
+	public CorsFilter corsFilter() {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		CorsConfiguration               config = new CorsConfiguration();
+		CorsConfiguration config = new CorsConfiguration();
+
+		// Allow all origins
+		config.addAllowedOrigin("*");
+
+		// Allow all HTTP methods
+		config.addAllowedMethod("*");
+
+		// Allow all headers
+		config.addAllowedHeader("*");
+
+		// Allow credentials
 		config.setAllowCredentials(true);
-		config.addAllowedOrigin("http://localhost:5173");
-		config.setAllowedHeaders(Arrays.asList(
-				HttpHeaders.AUTHORIZATION,
-				HttpHeaders.CONTENT_TYPE,
-				HttpHeaders.ACCEPT));
-		config.setAllowedMethods(Arrays.asList(
-				HttpMethod.GET.name(),
-				HttpMethod.POST.name(),
-				HttpMethod.PUT.name(),
-				HttpMethod.DELETE.name()
-		));
-		config.setMaxAge(MAX_AGE);
+
 		source.registerCorsConfiguration("/**", config);
-		FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
-		bean.setOrder(CORS_FILTER_ORDER);
-		return bean;
+		return new CorsFilter(source);
 	}
 }
+
+
